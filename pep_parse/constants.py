@@ -1,7 +1,11 @@
 from pathlib import Path
 
+URL = 'https://peps.python.org/'
+ALLOWED_DOMAIN = 'peps.python.org'
 
-BASE_DIR = Path(__file__).parent.parent
+BASE_DIR = Path(__file__).parent
 RESULTS = 'results'
-RESULTS_DIR = BASE_DIR.parent / RESULTS
 DATETIME_FORMAT = '%Y-%m-%d_%H:-%M:-%S'
+
+SUMMARY_FILE_NAME = 'status_summary'
+TABLE_HEADER = ('Статус', 'Количество')
