@@ -10,13 +10,15 @@ class PepSpider(scrapy.Spider):
     start_urls = [URL]
 
     def parse(self, response):
-        peps = response.css('a.pep.reference.internal::attr(href)').getall()
-        yield from response.follow_all(peps, callback=self.parse_pep)
+        peps = response.css('section#numerical-index').css('tbody').css('tr')
+        for pep in peps:
+            pep_link = pep.css('a').attrib['href']
+            yield response.follow(pep_link, callback=self.parse_pep)
 
     def parse_pep(self, response):
         name_num = response.css(
             'h1.page-title::text').get().split(' – ')
-        pep_num = name_num[0][4:]
+        pep_num = name_num[0].split(' ')[-1]
         pep_name = name_num[1]
         data = {
             'number': int(pep_num),
