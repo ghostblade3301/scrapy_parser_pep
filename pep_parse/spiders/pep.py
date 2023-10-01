@@ -13,7 +13,7 @@ class PepSpider(scrapy.Spider):
         peps = response.css('section#numerical-index').css('tbody').css('tr')
         for pep in peps:
             pep_link = pep.css('a').attrib['href']
-            yield response.follow(pep_link, callback=self.parse_pep)
+            yield response.follow(pep_link + '/', callback=self.parse_pep)
 
     def parse_pep(self, response):
         name_num = response.css(

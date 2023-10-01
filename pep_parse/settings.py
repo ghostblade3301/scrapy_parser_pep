@@ -3,7 +3,7 @@ SPIDER_MODULES = ['pep_parse.spiders']
 NEWSPIDER_MODULE = 'pep_parse.spiders'
 ROBOTSTXT_OBEY = True
 FEEDS = {
-    'pep_parse/results/pep_%(time)s.csv': {
+    'results/pep_%(time)s.csv': {
         'format': 'csv',
         'fields': ['number', 'name', 'status'],
     },
